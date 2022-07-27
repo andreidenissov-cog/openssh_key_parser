@@ -61,7 +61,8 @@ class ECDSAPublicKeyParams(PublicKeyParams, abc.ABC):
         """
         return ''
 
-    CURVE_IDENTIFIER = utils.readonly_static_property(get_curve_identifier)
+    CURVE_IDENTIFIER: utils.readonly_static_property[str] = \
+        utils.readonly_static_property("get_curve_identifier")
     """The identifier, as specified in
     `RFC 5656 <https://www.ietf.org/rfc/rfc5656.html#section-6.1>`_,
     of a set of elliptic curve domain parameters.
@@ -75,7 +76,8 @@ class ECDSAPublicKeyParams(PublicKeyParams, abc.ABC):
         """
         return ''
 
-    CURVE_NAME = utils.readonly_static_property(get_curve_name)
+    CURVE_NAME: utils.readonly_static_property[str] = \
+        utils.readonly_static_property("get_curve_name")
     """The name of the elliptic curve domain parameters that corresponds to
     ``CURVE_IDENTIFIER``.
     """
@@ -88,7 +90,8 @@ class ECDSAPublicKeyParams(PublicKeyParams, abc.ABC):
         """
         return ''
 
-    CURVE_OID = utils.readonly_static_property(get_curve_oid)
+    CURVE_OID: utils.readonly_static_property[str] = \
+        utils.readonly_static_property("get_curve_oid")
     """The X.509 object identifier of the elliptic curve domain parameters that
     corresponds to ``CURVE_IDENTIFIER``.
     """

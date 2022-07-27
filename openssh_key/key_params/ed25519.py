@@ -52,7 +52,8 @@ class Ed25519PublicKeyParams(PublicKeyParams):
         """
         return 32
 
-    KEY_SIZE = utils.readonly_static_property(get_key_size)
+    KEY_SIZE: utils.readonly_static_property[int] = \
+        utils.readonly_static_property("get_key_size")
     """
     The value 32, the key size, in bytes, of an Ed25519 key.
     """

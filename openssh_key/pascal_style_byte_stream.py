@@ -85,9 +85,8 @@ class PascalStyleByteStream(io.BytesIO):
         """
         return 4
 
-    OPENSSH_DEFAULT_STRING_LENGTH_SIZE = utils.readonly_static_property(
-        get_openssh_default_string_length_size
-    )
+    OPENSSH_DEFAULT_STRING_LENGTH_SIZE: utils.readonly_static_property[int] = \
+        utils.readonly_static_property("get_openssh_default_string_length_size")
     """
     The value 4, the size in bytes used by OpenSSH for the ``int`` preceding
     a variable-length value that indicates the length of the latter.
@@ -473,9 +472,8 @@ class PascalStyleDict(utils.BaseDict, abc.ABC):
             PascalStyleDict.__FORMAT_INSTRUCTIONS_DICT
         )
 
-    FORMAT_INSTRUCTIONS_DICT = utils.readonly_static_property(
-        get_format_instructions_dict
-    )
+    FORMAT_INSTRUCTIONS_DICT: utils.readonly_static_property[FormatInstructionsDict] = \
+        utils.readonly_static_property("get_format_instructions_dict")
 
     def check_params_are_valid(self) -> None:
         PascalStyleByteStream.check_dict_matches_format_instructions_dict(

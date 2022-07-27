@@ -70,7 +70,7 @@ class Cipher(abc.ABC):
         """
         return 0
 
-    BLOCK_SIZE = utils.readonly_static_property(get_block_size)
+    BLOCK_SIZE: utils.readonly_static_property[int] = utils.readonly_static_property("get_block_size")
     """The block size for this cipher.
     """
 
@@ -86,7 +86,8 @@ class InitializationVectorCipher(Cipher, abc.ABC):
         """
         return 0
 
-    KEY_LENGTH = utils.readonly_static_property(get_key_length)
+    KEY_LENGTH: utils.readonly_static_property[int] = \
+        utils.readonly_static_property("get_key_length")
     """The key length for this cipher in bytes.
     """
 
@@ -98,7 +99,7 @@ class InitializationVectorCipher(Cipher, abc.ABC):
         """
         return cls.BLOCK_SIZE
 
-    IV_LENGTH = utils.readonly_static_property(get_iv_length)
+    IV_LENGTH: utils.readonly_static_property[int] = utils.readonly_static_property("get_iv_length")
     """The initialization vector length for this cipher in bytes.
     Defaults to the block size.
     """

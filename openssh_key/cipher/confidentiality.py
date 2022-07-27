@@ -27,7 +27,8 @@ class ConfidentialityOnlyCipher(InitializationVectorCipher, abc.ABC):
             raise NotImplementedError('returned from abstract method')
         return r
 
-    MODE = utils.readonly_static_property(get_mode)
+    MODE: utils.readonly_static_property[typing.Callable[[bytes], modes.Mode]] = \
+        utils.readonly_static_property("get_mode")
     """The mode of operation of this cipher.
     """
 
@@ -40,7 +41,8 @@ class ConfidentialityOnlyCipher(InitializationVectorCipher, abc.ABC):
             raise NotImplementedError('returned from abstract method')
         return r
 
-    ALGORITHM = utils.readonly_static_property(get_algorithm)
+    ALGORITHM: utils.readonly_static_property[typing.Callable[[bytes], ciphers.CipherAlgorithm]] = \
+        utils.readonly_static_property("get_algorithm")
     """The encryption algorithm of this cipher.
     """
 
@@ -49,7 +51,7 @@ class ConfidentialityOnlyCipher(InitializationVectorCipher, abc.ABC):
         cls,
         cipher_key: bytes,
         initialization_vector: bytes
-    ) -> ciphers.Cipher:
+    ) -> ciphers.Cipher[typing.Any]:
         return ciphers.Cipher(
             (cls.ALGORITHM)(cipher_key),
             (cls.MODE)(initialization_vector)

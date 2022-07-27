@@ -33,7 +33,8 @@ def test_is_abstract_concrete():
 def test_readonly_static_property_manual_get_call():
     def f():
         return 1
-    p = utils.readonly_static_property(f)
+    _ = f()
+    p = utils.readonly_static_property("f")
 
     class C:
         @staticmethod
@@ -48,7 +49,7 @@ def test_readonly_static_property_same_class():
         @staticmethod
         def f():
             return 1
-        p = utils.readonly_static_property(f)
+        p = utils.readonly_static_property("f")
 
     assert C().p == 1
     assert C.p == 1
@@ -59,7 +60,7 @@ def test_readonly_static_property_subclass_overrides():
         @staticmethod
         def f():
             return 1
-        p = utils.readonly_static_property(f)
+        p = utils.readonly_static_property("f")
 
     class D(C):
         @staticmethod
@@ -75,7 +76,7 @@ def test_readonly_static_property_subclass_inherits():
         @staticmethod
         def f():
             return 1
-        p = utils.readonly_static_property(f)
+        p = utils.readonly_static_property("f")
 
     class D(C):
         pass

@@ -52,9 +52,10 @@ class Key(typing.Generic[PublicKeyParamsTypeVar], abc.ABC):
             Key.__HEADER_FORMAT_INSTRUCTIONS_DICT
         )
 
-    HEADER_FORMAT_INSTRUCTIONS_DICT = utils.readonly_static_property(
-        get_header_format_instructions_dict
-    )
+    HEADER_FORMAT_INSTRUCTIONS_DICT: utils.readonly_static_property[FormatInstructionsDict] \
+        = utils.readonly_static_property(
+            "get_header_format_instructions_dict"
+        )
     """The Pascal-style byte stream format instructions for the encoded
     header.
     """
@@ -73,9 +74,10 @@ class Key(typing.Generic[PublicKeyParamsTypeVar], abc.ABC):
             Key.__FOOTER_FORMAT_INSTRUCTIONS_DICT
         )
 
-    FOOTER_FORMAT_INSTRUCTIONS_DICT = utils.readonly_static_property(
-        get_footer_format_instructions_dict
-    )
+    FOOTER_FORMAT_INSTRUCTIONS_DICT: utils.readonly_static_property[FormatInstructionsDict] \
+        = utils.readonly_static_property(
+            "get_footer_format_instructions_dict"
+        )
     """The Pascal-style byte stream format instructions for the encoded
     footer.
     """

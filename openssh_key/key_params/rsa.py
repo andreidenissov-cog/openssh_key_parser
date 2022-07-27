@@ -146,7 +146,8 @@ class RSAPrivateKeyParams(PrivateKeyParams, RSAPublicKeyParams):
         """
         return 65537
 
-    PUBLIC_EXPONENT = utils.readonly_static_property(get_public_exponent)
+    PUBLIC_EXPONENT: utils.readonly_static_property[int] = \
+        utils.readonly_static_property("get_public_exponent")
     """
     The value 65537, the default public exponent of an RSA key.
     """
@@ -158,7 +159,7 @@ class RSAPrivateKeyParams(PrivateKeyParams, RSAPublicKeyParams):
         """
         return 4096
     
-    KEY_SIZE = utils.readonly_static_property(get_key_size)
+    KEY_SIZE: utils.readonly_static_property[int] = utils.readonly_static_property("get_key_size")
     """
     The value 4096, the default key size, in bits, of an RSA key.
     """

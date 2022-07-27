@@ -1,5 +1,3 @@
-import typing
-
 import pytest
 from openssh_key.pascal_style_byte_stream import PascalStyleFormatInstruction
 
@@ -10,7 +8,9 @@ import test_ed25519
 import test_rsa
 import test_sk
 
-_TEST_CASES: list[dict[str, typing.Any]] = sum(
+_TEST_CASES: \
+    list = \
+        sum(
     [
         test_rsa.PARAMS_TEST_CASES,
         test_ed25519.PARAMS_TEST_CASES,
@@ -21,6 +21,7 @@ _TEST_CASES: list[dict[str, typing.Any]] = sum(
     ],
     []
 )
+    #list[dict[str, typing.Any]] = \
 
 
 @pytest.mark.parametrize('key_params_test', _TEST_CASES)

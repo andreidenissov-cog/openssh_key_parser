@@ -33,12 +33,8 @@ class readonly_static_property(
 
     def __init__(
         self,
-        getter: typing.Union[
-            typing.Callable[[], ReadonlyStaticPropertyTypeVar],
-            typing.Callable[[typing.Type[typing.Any]], ReadonlyStaticPropertyTypeVar]
-        ]
-    ) -> None:
-        self._getter = getter
+        getter: str) -> None:
+        self._getter_name = getter
 
     def __get__(
         self,
@@ -49,9 +45,8 @@ class readonly_static_property(
             cls = type(obj)
         return typing.cast(
             ReadonlyStaticPropertyTypeVar,
-            getattr(cls, self._getter.__name__)()
+            getattr(cls, self._getter_name)()
         )
-
 
 # https://github.com/python/mypy/issues/5264
 if typing.TYPE_CHECKING:  # pragma: no cover

@@ -31,13 +31,13 @@ class BcryptKDFOptions(KDFOptions):
     def get_salt_length() -> int:
         return 16
 
-    SALT_LENGTH = utils.readonly_static_property(get_salt_length)
+    SALT_LENGTH: utils.readonly_static_property[int] = utils.readonly_static_property("get_salt_length")
 
     @staticmethod
     def get_rounds() -> int:
         return 16
 
-    ROUNDS = utils.readonly_static_property(get_rounds)
+    ROUNDS: utils.readonly_static_property[int] = utils.readonly_static_property("get_rounds")
 
     def derive_key(self, passphrase: str, length: int) -> bytes:
         """Derives a bcrypt-PBKDF2 result from a given passphrase and

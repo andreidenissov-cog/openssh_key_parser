@@ -156,7 +156,7 @@ class DSSPrivateKeyParams(PrivateKeyParams, DSSPublicKeyParams):
         """
         return 1024
 
-    KEY_SIZE = utils.readonly_static_property(get_key_size)
+    KEY_SIZE: utils.readonly_static_property[int] = utils.readonly_static_property("get_key_size")
     """
     The value 1024, the key size, in bits, of a DSS key.
     """

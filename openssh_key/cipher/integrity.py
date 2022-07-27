@@ -32,7 +32,8 @@ class ConfidentialityIntegrityCipher(InitializationVectorCipher, abc.ABC):
         """
         return 0
 
-    TAG_LENGTH = utils.readonly_static_property(get_tag_length)
+    TAG_LENGTH: utils.readonly_static_property[int] = \
+        utils.readonly_static_property("get_tag_length")
     """The length of the authentication tag of this cipher in bytes.
 
     In OpenSSH private keys, the tag's length is not included as part of
@@ -176,10 +177,10 @@ class ChaCha20Poly1305Cipher(ConfidentialityIntegrityCipher):
     def get_chacha20_key_length(cls) -> int:
         """The value 32, the length in bytes of the ChaCha20 encryption key.
         """
-        return cls.KEY_LENGTH // 2
+        return int(cls.KEY_LENGTH) // 2
 
-    CHACHA20_KEY_LENGTH = utils.readonly_static_property(
-        get_chacha20_key_length)
+    CHACHA20_KEY_LENGTH: utils.readonly_static_property[int] = \
+        utils.readonly_static_property("get_chacha20_key_length")
     """The value 32, the length in bytes of the ChaCha20 encryption key.
     """
 
@@ -194,9 +195,8 @@ class ChaCha20Poly1305Cipher(ConfidentialityIntegrityCipher):
         """
         return b'\x00' * 16
 
-    CHACHA20_INITIAL_COUNTER_NONCE = utils.readonly_static_property(
-        get_chacha20_initial_counter_nonce
-    )
+    CHACHA20_INITIAL_COUNTER_NONCE: utils.readonly_static_property[bytes] = \
+        utils.readonly_static_property("get_chacha20_initial_counter_nonce")
     """The byte string consisting of sixteen zero bytes.
 
     When encrypting private keys, OpenSSH replaces the ChaCha20 nonce by
@@ -212,9 +212,8 @@ class ChaCha20Poly1305Cipher(ConfidentialityIntegrityCipher):
         """
         return 64
 
-    CHACHA20_CIPHER_TEXT_BLOCK_SIZE = utils.readonly_static_property(
-        get_chacha20_cipher_text_block_size
-    )
+    CHACHA20_CIPHER_TEXT_BLOCK_SIZE: utils.readonly_static_property[int] = \
+        utils.readonly_static_property("get_chacha20_cipher_text_block_size")
     """The value 64, the block size in bytes of the ChaCha20 encryption
     algorithm.
     """
@@ -225,8 +224,8 @@ class ChaCha20Poly1305Cipher(ConfidentialityIntegrityCipher):
         """
         return 32
 
-    POLY1305_KEY_LENGTH = utils.readonly_static_property(
-        get_poly1305_key_length)
+    POLY1305_KEY_LENGTH: utils.readonly_static_property[int] = \
+        utils.readonly_static_property("get_poly1305_key_length")
     """The value 32, the length in bytes of the Poly1305 key.
     """
 

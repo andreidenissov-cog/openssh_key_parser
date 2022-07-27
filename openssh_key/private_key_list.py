@@ -151,9 +151,10 @@ class PrivateKeyList(BaseList):
             PrivateKeyList.__HEADER_FORMAT_INSTRUCTIONS_DICT
         )
 
-    HEADER_FORMAT_INSTRUCTIONS_DICT = utils.readonly_static_property(
-        get_header_format_instructions_dict
-    )
+    HEADER_FORMAT_INSTRUCTIONS_DICT: utils.readonly_static_property[FormatInstructionsDict] = \
+        utils.readonly_static_property(
+            "get_header_format_instructions_dict"
+        )
     """The Pascal-style byte stream format instructions for the encoded
     header of the key list.
     """
@@ -174,9 +175,10 @@ class PrivateKeyList(BaseList):
             PrivateKeyList.__DECIPHER_BYTES_HEADER_FORMAT_INSTRUCTIONS_DICT
         )
 
-    DECIPHER_BYTES_HEADER_FORMAT_INSTRUCTIONS_DICT = utils.readonly_static_property(
-        get_decipher_bytes_header_format_instructions_dict
-    )
+    DECIPHER_BYTES_HEADER_FORMAT_INSTRUCTIONS_DICT: \
+        utils.readonly_static_property[FormatInstructionsDict] = utils.readonly_static_property(
+            "get_decipher_bytes_header_format_instructions_dict"
+        )
     """The Pascal-style byte stream format instructions for the header of
     the decrypted private byte string.
     """
@@ -231,6 +233,7 @@ class PrivateKeyList(BaseList):
                 at the end of the decrypted private byte string are not as
                 expected.
         """
+        # pylint: disable=too-many-branches
         try:
             byte_stream = PascalStyleByteStream(byte_string)
 
@@ -358,23 +361,26 @@ class PrivateKeyList(BaseList):
     def get_openssh_private_key_header() -> str:
         return '-----BEGIN OPENSSH PRIVATE KEY-----'
 
-    OPENSSH_PRIVATE_KEY_HEADER = utils.readonly_static_property(
-        get_openssh_private_key_header
-    )
+    OPENSSH_PRIVATE_KEY_HEADER: utils.readonly_static_property[str] = \
+        utils.readonly_static_property(
+            "get_openssh_private_key_header"
+        )
 
     @staticmethod
     def get_openssh_private_key_footer() -> str:
         return '-----END OPENSSH PRIVATE KEY-----'
 
-    OPENSSH_PRIVATE_KEY_FOOTER = utils.readonly_static_property(
-        get_openssh_private_key_footer
+    OPENSSH_PRIVATE_KEY_FOOTER: utils.readonly_static_property[str] = \
+        utils.readonly_static_property(
+        "get_openssh_private_key_footer"
     )
 
     @staticmethod
     def get_wrap_col() -> int:
         return 70
 
-    WRAP_COL = utils.readonly_static_property(get_wrap_col)
+    WRAP_COL: utils.readonly_static_property[int] = \
+        utils.readonly_static_property("get_wrap_col")
 
     @classmethod
     def from_string(
@@ -632,7 +638,7 @@ class PrivateKeyList(BaseList):
             IndexError: ``include_indices`` contains an index that is out of
                 range for this private key list.
         """
-        text = self.OPENSSH_PRIVATE_KEY_HEADER + '\n'
+        text: str = self.OPENSSH_PRIVATE_KEY_HEADER + '\n'
         private_keys_bytes = self.pack_bytes(
             passphrase,
             include_indices,
