@@ -1,5 +1,13 @@
 # openssh_key_parser
 
+The purpose of this repo (cloned from https://github.com/scottcwang/openssh_key_parser)
+is to get Python 3.8 running version of openssh_key_parser library,
+with all functionality being the same.
+In addition, I've fixed source code to make it really pass all unit tests and static checks.
+(Run top-level pytest after installing everything from requirements-dev.txt)
+
+Original README follows below:
+
 **Please don't use versions 0.0.1 - 0.0.5, which are affected by
 [CVE-2022-31124](https://github.com/scottcwang/openssh_key_parser/security/advisories/GHSA-hm37-9xh2-q499),
 a High severity vulnerability. Upgrade to at least version 0.0.6.**
