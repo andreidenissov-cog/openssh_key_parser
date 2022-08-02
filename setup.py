@@ -4,7 +4,7 @@ Installation script for openssh-key-parser library
 
 import os
 import sys
-from setuptools import setup, find_packages
+from setuptools import setup
 
 CURRENT_PYTHON = sys.version_info[:2]
 REQUIRED_PYTHON = (3, 8)
@@ -20,13 +20,13 @@ install it on Python {}.{}.
     sys.exit(1)
 
 def _read(fname):
-    with open(os.path.join(os.path.dirname(__file__), fname)) as file_name:
+    with open(os.path.join(os.path.dirname(__file__), fname), encoding='utf-8') as file_name:
         return file_name.read()
 
-with open('requirements.txt') as f:
+with open('requirements.txt', encoding='utf-8') as f:
     required = f.read().splitlines()
 
-with open('requirements-dev.txt') as f:
+with open('requirements-dev.txt', encoding='utf-8') as f:
     test_required = f.read().splitlines()
 
 def local_scheme(version):
